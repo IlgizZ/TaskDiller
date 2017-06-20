@@ -1,7 +1,8 @@
+
 Rails.application.routes.draw do
   get 'session/create'
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "authentications"} 
   get 'home/index'
   match '/auth/:provider/callback', to: 'session#create', via: :all
   delete '/logout', to: 'session#destroy', as: :logout
